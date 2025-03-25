@@ -12,7 +12,7 @@ import { graphqlProvider } from './apollo.confg';
 
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
+  providers: [graphqlProvider,provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes),
     providePrimeNG({
       theme: {
           preset: Aura
