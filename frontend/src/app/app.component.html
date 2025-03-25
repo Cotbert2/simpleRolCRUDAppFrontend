@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <header>
   
   <p-toolbar [style]="{ 'border-radius': '1rem', 'padding': '1rem 1rem 1rem 1.5rem' }">
@@ -19,7 +20,6 @@
       <div class="flex items-center">
         <p-button icon="pi pi-user" text plain  (onClick)="changeView('login')"/>
         <!--sing up button-->
-        <p-button icon="pi pi-user-plus" text plain  />
       </div>
     </ng-template>
   </p-toolbar>
@@ -28,4 +28,4 @@
 
 <app-home *ngIf="currentView == 'home'"></app-home>
 
-<app-login *ngIf="currentView == 'login'"></app-login>
+<app-login *ngIf="currentView == 'login'" (onLogin)="changeView('home')"></app-login>

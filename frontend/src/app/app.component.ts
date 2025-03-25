@@ -5,11 +5,13 @@ import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from "./presentation/login/login.component";
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
     HomeComponent,
+    ToastModule,
     ButtonModule,
     ToolbarModule,
     CommonModule, LoginComponent],
