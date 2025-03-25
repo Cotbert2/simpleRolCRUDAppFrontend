@@ -4,6 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { PostsService } from '../../core/services/posts.service';
 import { PostsComponent } from '../components/posts/posts.component';
 import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-home',
   imports: [
