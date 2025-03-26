@@ -6,7 +6,8 @@
       <div class="flex items-center gap-2">
         
         <p-button icon="pi pi-home" text plain (onClick)="changeView('home')" />
-        
+
+        <p-button icon="pi pi-bars" text plain (onClick)="changeView('posts')"/>
       </div>
     </ng-template>
     
@@ -29,3 +30,5 @@
 <app-home *ngIf="currentView == 'home'"></app-home>
 
 <app-login *ngIf="currentView == 'login'" (onLogin)="changeView('home')"></app-login>
+
+<app-crud-posts *ngIf="currentView == 'posts'"></app-crud-posts>

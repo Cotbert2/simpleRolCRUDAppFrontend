@@ -6,15 +6,18 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from "./presentation/login/login.component";
 import { ToastModule } from 'primeng/toast';
+import { PostsComponent } from './presentation/components/posts/posts.component';
+import { CrudPostsComponent } from "./presentation/crud-posts/crud-posts.component";
 
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet,
     HomeComponent,
+    PostsComponent,
     ToastModule,
     ButtonModule,
     ToolbarModule,
-    CommonModule, LoginComponent],
+    CommonModule, LoginComponent, CrudPostsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

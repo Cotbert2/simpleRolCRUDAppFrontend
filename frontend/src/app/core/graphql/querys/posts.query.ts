@@ -12,3 +12,26 @@ query GetPublicPosts {
     }
 }
 `
+
+/** query GetMyPosts2 {
+    getMyPosts {
+        id
+        title
+        content
+    }
+}*/
+
+export const GET_MY_POSTS = gql`
+query GetMyPosts {
+    getMyPosts {
+        id
+        title
+        content
+        user {
+            id
+            username
+            role
+        }
+    }
+}
+`
