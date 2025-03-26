@@ -40,7 +40,7 @@ export class CrudPostsComponent implements OnInit{
   checked : boolean = false;
   title : string = "";
   body : string = "";
-
+  isEdit : boolean = false;
   authToken : string = "";
   posts : any = [];
 
@@ -64,22 +64,55 @@ export class CrudPostsComponent implements OnInit{
     );
   }
 
-  savePost() : void {
-    console.log(this.title, this.body, this.checked, this.authToken);
-    this.postsService.createPost(this.title, this.body, this.checked, this.authToken).subscribe( (res) => {
+  deletePost(id : string) : void {
+    this.postsService.deletePost(id, this.authToken).subscribe( (res) => {
       console.log(res);
-      this.messageService.add({severity:'success', summary:'Success', detail:'Post created successfully'});
+      this.messageService.add({severity:'success', summary:'Success', detail:'Post deleted successfully'});
       this.loadPosts();
     }, (error) => {
       console.log(error);
-      this.messageService.add({severity:'error', summary:'Error', detail:'Post could not be created'});
+      this.messageService.add({severity:'error', summary:'Error', detail:'Post could not be deleted'});
     });
+  }
+  currentPost : any = {};
+  editPost(post : any) : void {
+    this.title = post.title;
+    this.body = post.content;
+    this.visible = true;
+    console.log(post);
+    this.currentPost = post;
+    this.isEdit = true;
+  }
 
-    this.visible = false;
+  savePost() : void {
+    if (!this.isEdit) {
+      console.log(this.title, this.body, this.checked, this.authToken);
+      this.postsService.createPost(this.title, this.body, this.checked, this.authToken).subscribe( (res) => {
+        console.log(res);
+        this.messageService.add({severity:'success', summary:'Success', detail:'Post created successfully'});
+        this.loadPosts();
+      }, (error) => {
+        console.log(error);
+        this.messageService.add({severity:'error', summary:'Error', detail:'Post could not be created'});
+      });
+      
+      this.visible = false;
+    }else {
+      this.postsService.editPost(this.currentPost.id, this.title, this.body, this.checked, this.authToken).subscribe( (res) => {
+        console.log(res);
+        this.messageService.add({severity:'success', summary:'Success', detail:'Post edited successfully'});
+        this.loadPosts();
+      }
+      );
+      this.visible = false;
+      this.isEdit = false;
+      this.loadPosts();
+    }
   }
 
 
   showDialogToAdd() : void {
     this.visible = true;
+    this.isEdit = false;
   }
 }

@@ -1,42 +1,50 @@
-<p-card>
-    <p-button label="New Post" icon="pi pi-plus" (onClick)="showDialogToAdd()"></p-button>
-</p-card>
+<div class="full-container">
 
-
-<div>
-    <div *ngFor="let post of posts">
-        <app-posts [post]="post" [editable]="true"></app-posts>
-    </div>
-</div>
-
-<p-dialog  header="Add new post" [modal]="true" [(visible)]="visible">
-    <div class="modal-content">
-
-        <div class="field">
-            <label for="">Is public</label>
-            <p-toggleswitch [(ngModel)]="checked" />
-
-
-            <p-floatlabel variant="in">
-                <input pInputText id="pass1" type="text" autocomplete="off"  [(ngModel)]="title" />
-                <label for="pass1">
-                    <i class="pi pi-book"></i>
-                    {{'Title'}}</label>
-                </p-floatlabel>
+    <p-card>
+        <div class="w-100 df ai-center jc-space-between">
+            <p-button label="New Post" icon="pi pi-plus" (onClick)="showDialogToAdd()"></p-button>
+            <h2>Your posts</h2>
+            <h2></h2>
         </div>
         
-        <div class="field">
-
-            <p-floatlabel variant="in">
-                <textarea pInputTextarea id="textArea" rows="5" [(ngModel)]="body"></textarea>
-                <label for="textArea">
-                    <i class="pi pi-book"></i>
-                    {{'Your text'}}
-                </label>
-            </p-floatlabel>
+    </p-card>
+    
+    
+    <div>
+        <div *ngFor="let post of posts">
+            <app-posts [post]="post" [editable]="true" (deletePost)="deletePost($event)" (editPost)="editPost($event)"></app-posts>
         </div>
-        
-        <p-button label="Save"  icon="pi pi-save" (onClick)="savePost()"></p-button>
     </div>
-
-</p-dialog>
+    
+    <p-dialog  header="Add new post" [modal]="true" [(visible)]="visible">
+        <div class="modal-content">
+            
+            <div class="field">
+                <label for="">Is public</label>
+                <p-toggleswitch [(ngModel)]="checked" />
+                
+                
+                <p-floatlabel variant="in">
+                    <input pInputText id="pass1" type="text" autocomplete="off"  [(ngModel)]="title" />
+                    <label for="pass1">
+                        <i class="pi pi-book"></i>
+                        {{'Title'}}</label>
+                    </p-floatlabel>
+                </div>
+                
+                <div class="field">
+                    
+                    <p-floatlabel variant="in">
+                        <textarea pInputTextarea id="textArea" rows="5" [(ngModel)]="body"></textarea>
+                        <label for="textArea">
+                            <i class="pi pi-book"></i>
+                            {{'Your text'}}
+                        </label>
+                    </p-floatlabel>
+                </div>
+                
+                <p-button label="Save"  icon="pi pi-save" (onClick)="savePost()"></p-button>
+            </div>
+            
+        </p-dialog>
+    </div>

@@ -20,8 +20,8 @@ export class PostsComponent implements OnInit{
   //input variables for Title, authos and content
   @Input() post: any = {};
   @Input() editable : boolean = false;
-  @Output() deletePost : any = new EventEmitter();
-  @Output() editPost : any = new EventEmitter();
+  @Output() deletePost : any = new EventEmitter<any>();
+  @Output() editPost : any = new EventEmitter<any>();
   
   title : string = "";
   content : string = "";
@@ -32,6 +32,7 @@ export class PostsComponent implements OnInit{
   }
 
   deleteThisPost() : void {
+    console.log(this.post.id);
     this.deletePost.emit(this.post.id);
   }
 
