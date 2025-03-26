@@ -31,4 +31,4 @@
 
 <app-login *ngIf="currentView == 'login'" (onLogin)="changeView('home')"></app-login>
 
-<app-crud-posts *ngIf="currentView == 'posts'"></app-crud-posts>
+<app-crud-posts *ngIf="currentView == 'posts'" (redirectLogin)="changeView('home')"></app-crud-posts>
